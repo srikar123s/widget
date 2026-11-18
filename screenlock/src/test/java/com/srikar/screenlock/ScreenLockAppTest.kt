@@ -133,4 +133,21 @@ class ScreenLockAppTest {
         assertTrue("Must declare and use ACTION_LOCK_SCREEN", content.contains("ACTION_LOCK_SCREEN"))
         assertTrue("Must delegate to accessibility service lock", content.contains("ScreenLockAccessibilityService"))
     }
+
+    @Test
+    fun testTileServiceConfiguredInFunctionalManifest() {
+        val manifestFile = File("src/functional/AndroidManifest.xml")
+        val altFile = File("screenlock/src/functional/AndroidManifest.xml")
+        val targetFile = if (manifestFile.exists()) manifestFile else altFile
+
+        assertTrue("functional/AndroidManifest.xml must exist", targetFile.exists())
+        val content = targetFile.readText()
+
+        assertTrue("Functional manifest must declare ScreenLockTileService",
+            content.contains(".ScreenLockTileService"))
+        assertTrue("TileService must require BIND_QUICK_SETTINGS_TILE permission",
+            content.contains("android.permission.BIND_QUICK_SETTINGS_TILE"))
+        assertTrue("TileService must handle QS_TILE action",
+            content.contains("android.service.quicksettings.action.QS_TILE"))
+    }
 }

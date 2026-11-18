@@ -506,6 +506,33 @@ fun ScreenLockSetupScreen(
 
             Spacer(modifier = Modifier.height(18.dp))
 
+            // Quick Access Methods Card (Dock, 1x1 Widget, Quick Settings Tile)
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF1E242B)),
+                shape = RoundedCornerShape(14.dp)
+            ) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "3 Ways to Lock Your Screen",
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        fontSize = 14.sp
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "• Launcher Dock: Drag the Screen Lock icon into your bottom dock for 1-tap lock.\n" +
+                                "• 1×1 Widget: Pinch home screen > Widgets > Screen Lock for a transparent widget.\n" +
+                                "• Control Center Tile: Pull down quick settings > Edit > drag 'Screen Lock' into your active tiles.",
+                        fontSize = 12.sp,
+                        color = Color(0xFFB0BEC5),
+                        lineHeight = 18.sp
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(18.dp))
+
             // Diagnostic Logs Card
             Card(
                 modifier = Modifier.fillMaxWidth(),
