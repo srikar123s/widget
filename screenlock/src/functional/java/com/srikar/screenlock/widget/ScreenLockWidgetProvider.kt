@@ -61,7 +61,8 @@ class ScreenLockWidgetProvider : AppWidgetProvider() {
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
 
-        private const val ACTION_LOCK_SCREEN = "com.srikar.screenlock.ACTION_LOCK_SCREEN"
+        const val ACTION_LOCK_SCREEN = "com.srikar.screenlock.ACTION_LOCK_SCREEN"
+        const val ACTION_APPWIDGET_UPDATE = AppWidgetManager.ACTION_APPWIDGET_UPDATE
     }
 
     override fun onUpdate(

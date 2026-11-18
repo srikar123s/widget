@@ -44,7 +44,12 @@ class XiaomiWeatherProvider(private val context: Context) {
             get() = try { Uri.parse(CANDIDATE_URI_STRINGS[0]) } catch (_: Exception) { null }
 
         private const val MAX_FRESHNESS_WINDOW_MS = 4 * 60 * 60 * 1000L // 4 hours
+        private const val PROBE_FAILURE_BACKOFF_MS = 60 * 60 * 1000L // 1 hour backoff on non-Xiaomi devices
         val KNOWN_WEATHER_PACKAGES = listOf("com.miui.weather2", "com.xiaomi.weather")
+
+        // In-memory cache for probe result to eliminate repetitive overhead on non-Xiaomi devices
+        @Volatile private var cachedWorkingUri: Uri? = null
+        @Volatile private var lastProbeFailedTimestamp: Long = 0L
     }
 
     /**
@@ -109,6 +114,8 @@ class XiaomiWeatherProvider(private val context: Context) {
                         fields.addAll(c.columnNames)
                         val rowCount = c.count
                         queryResult = if (rowCount > 0) {
+                            cachedWorkingUri = uri
+                            lastProbeFailedTimestamp = 0L
                             "Success via $uri (${rowCount} row(s) returned)"
                         } else {
                             "Accessible via $uri, but cursor is empty (0 rows)"
@@ -150,6 +157,12 @@ class XiaomiWeatherProvider(private val context: Context) {
      * Safely checks if the Xiaomi Weather Content Provider is present and accessible.
      */
     fun isProviderAvailable(): Boolean {
+        // If recent probe failed completely within backoff window, skip checking
+        if (cachedWorkingUri == null && lastProbeFailedTimestamp > 0 &&
+            System.currentTimeMillis() - lastProbeFailedTimestamp < PROBE_FAILURE_BACKOFF_MS) {
+            return false
+        }
+
         return try {
             val packageManager = context.packageManager
             val authorities = listOf("weather", "com.miui.weather2.provider", "com.miui.weather.provider")
@@ -165,12 +178,24 @@ class XiaomiWeatherProvider(private val context: Context) {
 
     /**
      * Attempts to query Xiaomi Weather content providers safely across all known endpoints.
+     * Caches the working URI or backoff failure to avoid overhead on non-Xiaomi devices.
      * Returns valid WeatherData if successful and fresh; null otherwise.
      */
     suspend fun queryWeatherData(): WeatherData? {
+        val now = System.currentTimeMillis()
+
+        // Short-circuit on non-Xiaomi devices if previous probe failed within backoff window
+        if (cachedWorkingUri == null && lastProbeFailedTimestamp > 0 &&
+            now - lastProbeFailedTimestamp < PROBE_FAILURE_BACKOFF_MS) {
+            return null
+        }
+
         val contentResolver = context.contentResolver
 
-        for (uri in CANDIDATE_URIS) {
+        // Prioritize known cached working URI if available
+        val urisToTry = cachedWorkingUri?.let { listOf(it) + CANDIDATE_URIS.filter { u -> u != it } } ?: CANDIDATE_URIS
+
+        for (uri in urisToTry) {
             try {
                 val cursor = contentResolver.query(uri, null, null, null, null) ?: continue
                 cursor.use { c ->
@@ -208,6 +233,10 @@ class XiaomiWeatherProvider(private val context: Context) {
                         }
                     }
 
+                    // Save working URI for fast future lookups
+                    cachedWorkingUri = uri
+                    lastProbeFailedTimestamp = 0L
+
                     Log.i(TAG, "Successfully extracted weather from Xiaomi provider ($uri): $cityName, $tempVal°C, $description")
 
                     return WeatherData(
@@ -227,6 +256,11 @@ class XiaomiWeatherProvider(private val context: Context) {
             } catch (e: Exception) {
                 Log.d(TAG, "Cannot query $uri: ${e.message}")
             }
+        }
+
+        // If all candidate URIs failed, record failure timestamp to avoid polling on non-Xiaomi devices
+        if (cachedWorkingUri == null) {
+            lastProbeFailedTimestamp = now
         }
 
         return null
