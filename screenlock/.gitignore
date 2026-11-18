@@ -1,0 +1,16 @@
+# Keystore credentials — never commit
+keystore.properties
+*.jks
+*.keystore
+
+# Build outputs
+/build
+/app/build
+/screenlock/build
+*.apk
+*.aab
+
+# IDE
+.idea/
+*.iml
+*.iws

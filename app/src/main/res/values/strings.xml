@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ChronoWidget</string>
+    <string name="widget_name">ChronoWidget (Native Fast 4×2)</string>
+    <string name="widget_description">Standard lightweight native RemoteViews 4×2 widget with live ticking clock and zero battery overhead</string>
+    <string name="glance_widget_name">ChronoWidget (Compose Glance 4×2)</string>
+    <string name="glance_widget_description">Jetpack Glance Compose-rendered 4×2 widget for modern Android launchers</string>
+</resources>

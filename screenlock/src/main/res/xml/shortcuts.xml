@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="screen_lock_settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_lock_grey"
+        android:shortcutShortLabel="@string/shortcut_settings_short_label"
+        android:shortcutLongLabel="@string/shortcut_settings_long_label">
+        <intent
+            android:action="com.srikar.screenlock.ACTION_SETTINGS"
+            android:targetPackage="com.srikar.screenlock"
+            android:targetClass="com.srikar.screenlock.MainActivity" />
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="screen_lock_widget"
+        android:enabled="true"
+        android:icon="@drawable/ic_lock_grey"
+        android:shortcutShortLabel="@string/shortcut_widget_short_label"
+        android:shortcutLongLabel="@string/shortcut_widget_long_label">
+        <intent
+            android:action="android.appwidget.action.APPWIDGET_UPDATE"
+            android:targetPackage="com.srikar.screenlock"
+            android:targetClass="com.srikar.screenlock.widget.ScreenLockWidgetProvider" />
+    </shortcut>
+</shortcuts>
+

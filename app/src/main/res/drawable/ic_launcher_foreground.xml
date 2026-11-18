@@ -1,0 +1,37 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        android:translateX="13.5"
+        android:translateY="13.5">
+        <!-- Outer rounded rectangle ring -->
+        <path
+            android:strokeColor="#38BDF8"
+            android:strokeWidth="3.5"
+            android:fillColor="#161B22"
+            android:pathData="M30,20h48a14,14 0 0 1 14,14v40a14,14 0 0 1 -14,14h-48a14,14 0 0 1 -14,-14v-40a14,14 0 0 1 14,-14z" />
+        <!-- Clock hands -->
+        <path
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="3.5"
+            android:strokeLineCap="round"
+            android:pathData="M54,54l0,-16M54,54l12,0" />
+        <!-- Center pivot dot -->
+        <path
+            android:fillColor="#38BDF8"
+            android:pathData="M54,54m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+        <!-- Small sun in bottom right corner -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M76,72m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0" />
+        <path
+            android:strokeColor="#F59E0B"
+            android:strokeWidth="1.5"
+            android:strokeLineCap="round"
+            android:pathData="M76,65l0,-1.5M76,79l0,1.5M69,72l-1.5,0M83,72l1.5,0" />
+    </group>
+</vector>

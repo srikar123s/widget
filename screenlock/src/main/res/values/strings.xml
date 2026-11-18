@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Screen Lock</string>
+    <string name="accessibility_service_label">Screen Lock</string>
+    <string name="accessibility_service_description">Locks screen using system power action (GLOBAL_ACTION_LOCK_SCREEN). Does not read screen content, track keystrokes, or collect data. Retains fingerprint and face unlock.</string>
+
+    <string name="screen_lock_widget_name">Screen Lock</string>
+    <string name="screen_lock_widget_description">1×1 tap-to-lock widget using AccessibilityService</string>
+
+    <string name="shortcut_settings_short_label">Settings</string>
+    <string name="shortcut_settings_long_label">Screen Lock Settings</string>
+
+    <string name="shortcut_widget_short_label">Add Widget</string>
+    <string name="shortcut_widget_long_label">Add 1×1 Screen Lock Widget</string>
+
+    <string name="status_ready">Screen Lock is Ready</string>
+    <string name="status_setup_needed">Setup Required</string>
+    <string name="action_enable_accessibility">Enable Accessibility Service</string>
+    <string name="action_test_lock">Test Screen Lock</string>
+    <string name="action_open_app_info">Open App Info (Allow Restricted Settings)</string>
+    <string name="action_drag_to_dock">Drag this icon to your bottom dock for instant 1-tap locking.</string>
+</resources>

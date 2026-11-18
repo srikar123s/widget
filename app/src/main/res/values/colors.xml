@@ -1,0 +1,17 @@
+<resources>
+    <color name="primary">#64B5F6</color>
+    <color name="on_primary">#003258</color>
+    <color name="primary_container">#00487D</color>
+    <color name="on_primary_container">#D1E4FF</color>
+    <color name="background">#0E1117</color>
+    <color name="on_background">#E2E8F0</color>
+    <color name="surface">#161B22</color>
+    <color name="on_surface">#E2E8F0</color>
+    <color name="surface_variant">#21262D</color>
+    <color name="on_surface_variant">#8B949E</color>
+    <color name="widget_default_bg">#11141C</color>
+    <color name="widget_text_primary">#FFFFFF</color>
+    <color name="widget_text_secondary">#D1D5DB</color>
+    <color name="widget_weather_amber">#F59E0B</color>
+    <color name="widget_border">#30363D</color>
+</resources>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/widget_background"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <!-- 1. TIME SECTION (Digits + AM/PM with independent styling) -->
+    <LinearLayout
+        android:id="@+id/widget_time_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextClock
+            android:id="@+id/widget_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="hh:mm"
+            android:format24Hour="HH:mm"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:includeFontPadding="false" />
+
+        <TextClock
+            android:id="@+id/widget_ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:format12Hour="a"
+            android:format24Hour=""
+            android:textAllCaps="true"
+            android:textColor="#E2E8F0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:includeFontPadding="false" />
+    </LinearLayout>
+
+    <!-- 2. DATE SECTION (Weekday, Day, Month & Year with independent styling) -->
+    <LinearLayout
+        android:id="@+id/widget_date_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/widget_date_weekday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunday, "
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/widget_date_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01 "
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/widget_date_month_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="November 2026"
+            android:textColor="#E2E8F0"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:includeFontPadding="false" />
+
+        <!-- Fallback single date text for custom date formats -->
+        <TextView
+            android:id="@+id/widget_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone"
+            android:includeFontPadding="false" />
+    </LinearLayout>
+
+    <!-- 3. WEATHER SECTION (Icon, Temp, Condition, City, Humidity) -->
+    <LinearLayout
+        android:id="@+id/widget_weather_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/widget_weather_icon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_weather_partly_cloudy"
+            android:contentDescription="Weather Condition Icon" />
+
+        <TextView
+            android:id="@+id/widget_weather_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="28°C"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/widget_weather_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="Partly Cloudy"
+            android:textColor="#D1D5DB"
+            android:textSize="14sp"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/widget_weather_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="• Bangalore"
+            android:textColor="#E2E8F0"
+            android:textSize="13sp"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/widget_weather_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text=""
+            android:textColor="#9CA3AF"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:includeFontPadding="false" />
+    </LinearLayout>
+
+</LinearLayout>

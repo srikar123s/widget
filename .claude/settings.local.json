@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew :app:testDebugUnitTest :screenlock:testDebugUnitTest --no-daemon)",
+      "Bash(./gradlew :app:testDebugUnitTest :screenlock:testFunctionalDebugUnitTest :screenlock:testDiagnosticDebugUnitTest --no-daemon)"
+    ]
+  }
+}

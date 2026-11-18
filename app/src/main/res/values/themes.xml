@@ -1,0 +1,18 @@
+<resources>
+    <style name="Theme.ChronoWidget" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">#0E1117</item>
+        <item name="android:navigationBarColor">#0E1117</item>
+        <item name="android:windowBackground">#0E1117</item>
+    </style>
+
+    <!-- Invisible transparent theme for instantaneous 1-tap lock without UI flicker -->
+    <style name="Theme.ScreenLockTransparent" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
+</resources>
